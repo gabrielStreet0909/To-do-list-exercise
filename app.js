@@ -1,17 +1,14 @@
 const express = require('express')
+const checkListRouter = require('./src/routes/checkList')
+
 const app = express()
 
-// para setarmos rotas fazemos da seguinte maneira -->
+// // Middlewares
+app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send('<h1>Minha lista de tarefas</h1>')
-})
+app.use('/checklist', checkListRouter)
 
-// como devolver respostas JSON
-
-app.get('/json', (req, res) => {
-  res.json({title: 'Tarefa X', done: true})
-})
+//
 
 app.listen('3000', () => {
   console.log('Servidor foi iniciado!!')
